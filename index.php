@@ -36,7 +36,7 @@
 					foreach($rows as $r)
 					{
 					?>
-						<a href="categoryPage.php?cateID=<?=$r['cateID']?>"><?=$r['cateName']?></a>
+						<a href="categoryPage.php?cateid=<?=$r['cateid']?>"><?=$r['catename']?></a>
 
 				<?php
 					}
@@ -59,16 +59,16 @@
 						require_once('./dbconnector.php');
 						$cn = new DBConnector();
 						//call the function of object DBConnector
-						$rows = $cn->runQuery('Select * From products where cateID = 1');
+						$rows = $cn->runQuery('Select * From products where cateid = 1');
 
 						foreach($rows as $r)
 						{
 		?>
-			<a href="showDetail.php?productID=<?=$r['productID']?>">
+			<a href="showDetail.php?productID=<?=$r['productid']?>">
 				<div class="item">
 					<div class="context">
 						<div class="image_1"><img src="<?=$r['image']?>"></div>
-						<div class="name_1"><h3><?=$r['productName']?></h3></div>
+						<div class="name_1"><h3><?=$r['productname']?></h3></div>
 						<div class="price_1"><h2><?=$r['price']?></h2></div>
 					</div>
 				</div>
@@ -87,16 +87,16 @@
 						require_once('./dbconnector.php');
 						$cn = new DBConnector();
 						//call the function of object DBConnector
-						$rows = $cn->runQuery('Select * From products where cateID = 2');
+						$rows = $cn->runQuery('Select * From products where cateid = 2');
 
 						foreach($rows as $r)
 						{
 			?>
-			<a href="showDetail.php?productID=<?=$r['productID']?>">
+			<a href="showDetail.php?productID=<?=$r['productid']?>">
 				<div class="item">
 					<div class="context">
 						<div class="image_1"><img src="<?=$r['image']?>"></div>
-						<div class="name_1"><h3><?=$r['productName']?></h3></div>
+						<div class="name_1"><h3><?=$r['productname']?></h3></div>
 						<div class="price_1"><h2><?=$r['price']?></h2></div>
 					</div>
 				</div>

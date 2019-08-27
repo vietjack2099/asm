@@ -36,7 +36,7 @@
 					foreach($rows as $r)
 					{
 					?>
-						<a href="categoryPage.php?cateID=<?=$r['cateID']?>"><?=$r['cateName']?></a>
+						<a href="categoryPage.php?cateid=<?=$r['cateid']?>"><?=$r['catename']?></a>
 
 				<?php
 					}
@@ -49,11 +49,11 @@
 			<h1>-------------</h1>
 			<?php 
 						//get parameter from client
-						if(isset($_GET['cateID']))
+						if(isset($_GET['cateid']))
 						{
-							$cateID = $_GET['cateID'];
+							$cateid = $_GET['cateid'];
 							//create sql query
-							$sql = "Select * from products where cateID=" . $cateID;
+							$sql = "Select * from products where cateid=" . $cateid;
 							//instance an object DBConnector
 							$cn = new DBConnector();
 							//call the function of object DBConnector
@@ -61,11 +61,11 @@
 							foreach($rows as $r)
 							{
 					?>
-			<a href="ShowDetail.php?productID=<?=$r['productID']?>">
+			<a href="ShowDetail.php?productid=<?=$r['productid']?>">
 				<div class="item">
 					<div class="context">
 						<div class="image_1"><img src="<?=$r['image']?>"></div>
-						<div class="name_1"><h3><?=$r['productName']?></h3></div>
+						<div class="name_1"><h3><?=$r['productname']?></h3></div>
 						<div class="price_1"><h2><?=$r['price']?></h2></div>
 					</div>
 				</div>
