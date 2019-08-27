@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Electrotric Store</title>
-	<link rel="stylesheet" type="text/css" href="style/asm.css">
+	<link rel="stylesheet" type="text/css" href="style/showDetail.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
 			<ul>
 				<li><a href="index.php">Home</a></li>
 				<li><a href="about.php">About Us</a></li>
-				<li><a href="login.php">Login</a></li>
+				<li><a href="products.html">Login</a></li>
 			</ul>
 
 		</div>
@@ -27,7 +27,7 @@
 	<div class="main">
 		<div class="sidebar">
 			<div class="sidenav">
-				<?php 
+			  <?php 
 					//including library
 					require_once('./dbconnector.php');
 					$conn = new DBConnector();
@@ -42,18 +42,42 @@
 					}
 				?>
 			</div>
-		
 		</div>
-	</div>
+		
+		<div class="showDetail">
+			<?php 
+						//get parameter from client
+						if(isset($_GET['productID']))
+						{
+							$productID = $_GET['productID'];
+							//create sql query
+							$sql = "Select * from products where productID=" . $productID;
+							//instance an object DBConnector
+							$cn = new DBConnector();
+							//call the function of object DBConnector
+							$rows = $cn->runQuery($sql);
+							foreach($rows as $r)
+							{
+			?>
+			<div class="name_1"><h2><?=$r['productName']?></h2></div>
 
-		<div class="adv">
-			<img src="image/ldp.PNG">
+				<div class="item">
+					<div class="context">
+						<div class="image_1"><img src="<?=$r['image']?>"></div>
+						<div class="des_1"><p><?=$r['des']?></p></div>
+						<div class="price_1"><h3><?=$r['price']?></h3></div>
+					</div>
+				</div>
+						<?php
+						}
+					}
+					?>
 		</div>
 		
-		<div class="content">
-			<h1>Smartphone</h1>
-			<h1>-------------</h1>
-		<?php 
+		<div class="sampleProduct">
+			<h1>Recommend Products</h1>
+			<h1>------------------</h1>
+			<?php 
 
 						//instance an object DBConnector
 						require_once('./dbconnector.php');
@@ -63,13 +87,13 @@
 
 						foreach($rows as $r)
 						{
-		?>
+			?>
 			<a href="showDetail.php?productID=<?=$r['productID']?>">
-				<div class="item">
-					<div class="context">
-						<div class="image_1"><img src="<?=$r['image']?>"></div>
-						<div class="name_1"><h3><?=$r['productName']?></h3></div>
-						<div class="price_1"><h2><?=$r['price']?></h2></div>
+				<div class="item_1">
+					<div class="context_1">
+						<div class="image"><img src="<?=$r['image']?>"></div>
+						<div class="name"><h3><?=$r['productName']?></h3></div>
+						<div class="price"><h2><?=$r['price']?></h2></div>
 					</div>
 				</div>
 			</a>
@@ -77,37 +101,6 @@
 						}
 			?>
 		</div>
-		
-		<div class="content">
-			<h1>Camera</h1>
-			<h1>-------------</h1>
-			<?php 
-
-						//instance an object DBConnector
-						require_once('./dbconnector.php');
-						$cn = new DBConnector();
-						//call the function of object DBConnector
-						$rows = $cn->runQuery('Select * From products where cateID = 2');
-
-						foreach($rows as $r)
-						{
-			?>
-			<a href="showDetail.php?productID=<?=$r['productID']?>">
-				<div class="item">
-					<div class="context">
-						<div class="image_1"><img src="<?=$r['image']?>"></div>
-						<div class="name_1"><h3><?=$r['productName']?></h3></div>
-						<div class="price_1"><h2><?=$r['price']?></h2></div>
-					</div>
-				</div>
-			</a>
-			<?php
-						}
-			?>
-		</div>
-		</div>
-
-
 
 	</div>
 

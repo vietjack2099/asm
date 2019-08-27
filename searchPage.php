@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Electrotric Store</title>
-	<link rel="stylesheet" type="text/css" href="style/asm.css">
+	<link rel="stylesheet" type="text/css" href="style/cate.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
 	<div class="main">
 		<div class="sidebar">
 			<div class="sidenav">
-				<?php 
+			 	<?php 
 					//including library
 					require_once('./dbconnector.php');
 					$conn = new DBConnector();
@@ -37,33 +37,23 @@
 					{
 					?>
 						<a href="categoryPage.php?cateID=<?=$r['cateID']?>"><?=$r['cateName']?></a>
-
 				<?php
 					}
 				?>
 			</div>
-		
-		</div>
-	</div>
-
-		<div class="adv">
-			<img src="image/ldp.PNG">
 		</div>
 		
 		<div class="content">
-			<h1>Smartphone</h1>
+			<h1>All Products</h1>
 			<h1>-------------</h1>
-		<?php 
-
-						//instance an object DBConnector
-						require_once('./dbconnector.php');
-						$cn = new DBConnector();
-						//call the function of object DBConnector
-						$rows = $cn->runQuery('Select * From products where cateID = 1');
-
-						foreach($rows as $r)
-						{
-		?>
+			<?php
+                    $Product=$_GET['Product'];
+               		require_once('./dbconnector.php');
+                    $cn = new DBConnector();
+                    $sql="Select * from products where productName like '%$Product%'";
+                    $rows = $cn->runQuery($sql);
+                    foreach ($rows as $r) {
+             ?> 
 			<a href="showDetail.php?productID=<?=$r['productID']?>">
 				<div class="item">
 					<div class="context">
@@ -74,41 +64,10 @@
 				</div>
 			</a>
 			<?php
-						}
+				}
 			?>
 		</div>
 		
-		<div class="content">
-			<h1>Camera</h1>
-			<h1>-------------</h1>
-			<?php 
-
-						//instance an object DBConnector
-						require_once('./dbconnector.php');
-						$cn = new DBConnector();
-						//call the function of object DBConnector
-						$rows = $cn->runQuery('Select * From products where cateID = 2');
-
-						foreach($rows as $r)
-						{
-			?>
-			<a href="showDetail.php?productID=<?=$r['productID']?>">
-				<div class="item">
-					<div class="context">
-						<div class="image_1"><img src="<?=$r['image']?>"></div>
-						<div class="name_1"><h3><?=$r['productName']?></h3></div>
-						<div class="price_1"><h2><?=$r['price']?></h2></div>
-					</div>
-				</div>
-			</a>
-			<?php
-						}
-			?>
-		</div>
-		</div>
-
-
-
 	</div>
 
 	<div class="footer">
